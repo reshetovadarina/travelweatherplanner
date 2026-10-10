@@ -60,6 +60,10 @@ header p {
   gap: 24px;
 }
 
+.hidden {
+  display: none !important;
+}
+
 @media (max-width: 768px) {
   .main-content {
     grid-template-columns: 1fr;

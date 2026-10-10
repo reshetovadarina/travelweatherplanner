@@ -30,8 +30,10 @@
               <label for="travel-date-input">Дата вашої подорожі</label>
               <input type="date" id="travel-date-input" />
             </div>
+
+            <button type="submit" class="btn-submit">Дізнатись погоду</button>
+            <div id="error-message" class="error-message hidden"></div>
           </form>
-          <button type="submit" class="btn-submit">Дізнатись погоду</button>
           <div id="weather-result" class="weather-result"></div>
         </section>
 
@@ -43,5 +45,7 @@
         </aside>
       </main>
     </div>
+
+    <script type="module" src="script.js"></script>
   </body>
 </html>
