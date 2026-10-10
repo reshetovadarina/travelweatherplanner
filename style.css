@@ -1,0 +1,162 @@
+:root {
+  --bg-app: #f4f7fa;
+  --bg-card: #ffffff;
+  --accent-light: #e0f2fe;
+  --text-main: #273240;
+  --text-muted: #627183;
+  --primary: #0284c7;
+  --primary-hover: #0369a1;
+  --border-radius: 16px;
+  --shadow-soft:
+    0 10px 25px -5px rgba(2, 132, 199, 0.05),
+    0 8px 16px -6px rgba(0, 0, 0, 0.03);
+  --transition-fast: 0.2s ease;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family:
+    "Segoe UI",
+    system-ui,
+    -apple-system,
+    sans-serif;
+  background-color: var(--bg-app);
+  color: var(--text-main);
+  line-height: 1.5;
+  padding: 40px 20px;
+}
+
+.app-container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+header h1 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 6px;
+  letter-spacing: -0.5px;
+}
+
+header p {
+  color: var(--text-muted);
+  font-size: 1.05rem;
+}
+
+.main-content {
+  display: grid;
+  grid-template-columns: 1.8fr 1.2fr;
+  gap: 24px;
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    grid-template-columns: 1fr;
+  }
+}
+
+.search-form {
+  background: var(--bg-card);
+  padding: 32px;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-soft);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  margin-bottom: 24px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 8px;
+  color: var(--text-main);
+}
+
+.form-group input {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  font-size: 1rem;
+  color: var(--text-main);
+  background-color: #f8fafc;
+  outline: none;
+  transition: all var(--transition-fast);
+}
+
+.form-group input:focus {
+  border-color: var(--primary);
+  background-color: var(--bg-card);
+  box-shadow: 0 0 0 4px var(--accent-light);
+}
+
+.btn-submit {
+  width: 100%;
+  background-color: var(--primary);
+  color: #ffffff;
+  border: none;
+  padding: 14px;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background-color var(--transition-fast),
+    transform 0.1s ease;
+}
+
+.btn-submit:hover {
+  background-color: var(--primary-hover);
+}
+
+.btn-submit:active {
+  transform: scale(0.98);
+}
+
+.weather-result {
+  margin-top: 20px;
+}
+
+.saved-trips-section {
+  background: var(--bg-card);
+  padding: 32px;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-soft);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  height: fit-content;
+}
+
+.saved-trips-section h2 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  border-bottom: 2px solid var(--bg-app);
+  padding-bottom: 12px;
+  margin-bottom: 16px;
+}
+
+.saved-trips-list {
+  list-style: none;
+}
+
+.no-trips {
+  color: var(--text-muted);
+  font-style: italic;
+  font-size: 0.95rem;
+  text-align: center;
+  padding: 20px 0;
+}
