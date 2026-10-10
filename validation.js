@@ -17,3 +17,21 @@ export function validateDestination(destination) {
 
     return true;
 }
+
+export function validateTravelDate(travelDateString) {
+    if (!travelDateString) {
+        throw new Error("Будь ласка, виберіть дату подорожі.");
+    }
+
+    const inputDate = new Date(travelDateString);
+    const today = new Date();
+
+    today.setHours(0, 0, 0, 0);
+    inputDate.setHours(0, 0, 0, 0);
+
+    if (inputDate < today) {
+        throw new Error("Дата подорожі не може бути в минулому.");
+    }
+
+    return true;
+}

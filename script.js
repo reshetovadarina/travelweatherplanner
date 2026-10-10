@@ -1,20 +1,23 @@
-import { validateDestination } from './validation.js';
+import { validateDestination, validateTravelDate } from './validation.js';
 import { fetchWeatherData } from './api.js';
 
 const searchForm = document.querySelector('#search-form');
 const destinationInput = document.querySelector('#destination-input');
+const travelDateInput = document.querySelector('#travel-date-input');
 
 searchForm.addEventListener('submit', async (event) => {
     event.preventDefault();
 
     const cityValue = destinationInput.value;
+     const dateValue = travelDateInput.value;
 
     try {
         validateDestination(cityValue);
-        console.log(`Надсилаємо запит для міста: ${cityValue}...`);
+         validateTravelDate(dateValue);
+      console.log(`Надсилаємо запит для ${cityValue} на дату ${dateValue}...`);
         const weatherData = await fetchWeatherData(cityValue);
-        console.log("Дані про погоду успішно отримано від API:", weatherData);
-        alert(`Погода в ${weatherData.destination}: ${weatherData.temperature}°C, ${weatherData.condition}`);
+
+        alert(`План успішний! Погода в ${weatherData.destination}: ${weatherData.temperature}°C, ${weatherData.condition}`);
 
     } catch (error) {
         alert(error.message);
