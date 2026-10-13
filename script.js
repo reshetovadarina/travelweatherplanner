@@ -59,7 +59,10 @@ wishlistForm.addEventListener('submit', (event) => {
         renderSavedTrips(updatedTrips);
 
         wishlistForm.reset();
+        searchForm.reset();
         wishlistForm.classList.add('hidden');
+
+        activeWeatherData = null;
 
     } catch (error) {
         showErrorMessage(error.message);
