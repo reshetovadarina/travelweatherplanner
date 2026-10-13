@@ -1,11 +1,12 @@
 const weatherResultContainer = document.querySelector('#weather-result');
 const errorContainer = document.querySelector('#error-message');
 
-export function renderWeatherCard(weatherData, travelDate) {
+export function renderWeatherCard(weatherData) {
+    weatherResultContainer.innerHTML = '';
+
     weatherResultContainer.innerHTML = `
         <div class="weather-card animate-fade-in">
-            <h3 class="card-title"> Прогноз для: <strong>${weatherData.destination}</strong></h3>
-            <p class="card-date"> Дата подорожі: <strong>${travelDate}</strong></p>
+            <h3 class="card-title">Поточна погода в: <strong>${weatherData.destination}</strong></h3>
 
             <div class="weather-main-info">
                 <span class="weather-temp">${weatherData.temperature}°C</span>

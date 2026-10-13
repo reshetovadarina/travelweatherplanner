@@ -1,6 +1,5 @@
 const API_KEY = '995dd282529ced4808cb6801f4e1123c';
-const BASE_URL = 'https://openweathermap.org';
-
+const BASE_URL = 'https://api.openweathermap.org/data/2.5/weather';
 function mapWeatherData(data) {
     return {
         destination: data.name,
@@ -14,7 +13,7 @@ function mapWeatherData(data) {
 }
 
 export async function fetchWeatherData(destination) {
-    const url = `${BASE_URL}?q=${encodeURIComponent(destination)}&appid=${API_KEY}&units=metric&lang=uk`;
+     const url = `${BASE_URL}?q=${encodeURIComponent(destination)}&appid=${API_KEY}&units=metric&lang=uk`;
 
     try {
         const response = await fetch(url);

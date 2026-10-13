@@ -14,20 +14,3 @@ export function validateDestination(destination) {
     }
 
 }
-
-export function validateTravelDate(travelDateString) {
-    if (!travelDateString) {
-        throw new Error("Помилка при плануванні дати: будь ласка, виберіть дату подорожі.");
-    }
-
-    const inputDate = new Date(travelDateString);
-    const today = new Date();
-
-    today.setHours(0, 0, 0, 0);
-    inputDate.setHours(0, 0, 0, 0);
-
-    if (inputDate < today) {
-        throw new Error("Помилка при плануванні дати: дата подорожі не може бути в минулому.");
-    }
-
-}
