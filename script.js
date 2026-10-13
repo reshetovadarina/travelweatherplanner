@@ -6,6 +6,8 @@ const searchForm = document.querySelector('#search-form');
 const destinationInput = document.querySelector('#destination-input');
 const wishlistForm = document.querySelector('#wishlist-form');
 const wishlistDateInput = document.querySelector('#wishlist-date-input');
+const wishlistNoteInput = document.querySelector('#wishlist-note-input');
+
 let activeWeatherData = null;
 
 searchForm.addEventListener('submit', async (event) => {
@@ -35,18 +37,19 @@ wishlistForm.addEventListener('submit', (event) => {
     clearErrorMessage();
 
     const dateValue = wishlistDateInput.value;
+    const noteValue = wishlistNoteInput.value.trim();
 
     try {
-
         validateTravelDate(dateValue);
 
         const wishlistPlan = {
             id: Date.now().toString(),
             date: dateValue,
+            note: noteValue,
             ...activeWeatherData
         };
 
-        alert(`Успішно додано у wishlist!\n\nМісто: ${wishlistPlan.destination}\nДата поїздки: ${wishlistPlan.date}\nПоточна температура: ${wishlistPlan.temperature}°C`);
+        alert(`Додано у wishlist!\n\nМісто: ${wishlistPlan.destination}\nДата: ${wishlistPlan.date}\nНотатка: ${wishlistPlan.note || 'Немає нотаток'}`);
 
         wishlistForm.reset();
         wishlistForm.classList.add('hidden');

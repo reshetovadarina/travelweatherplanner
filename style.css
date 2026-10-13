@@ -112,6 +112,26 @@ header p {
   box-shadow: 0 0 0 4px #e0f2fe;
 }
 
+.form-group textarea {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 12px;
+  font-size: 1rem;
+  color: var(--text-main);
+  background-color: #f8fafc;
+  outline: none;
+  font-family: inherit;
+  resize: vertical;
+  transition: all var(--transition-fast);
+}
+
+.form-group textarea:focus {
+  border-color: var(--accent-orange);
+  background-color: #ffffff;
+  box-shadow: 0 0 0 4px #ffedd5;
+}
+
 .btn-submit {
   width: 100%;
   background-color: var(--primary);
