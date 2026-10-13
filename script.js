@@ -19,7 +19,6 @@ searchForm.addEventListener('submit', async (event) => {
         validateDestination(cityValue);
         validateTravelDate(dateValue);
 
-        console.log(`Надсилаємо запит для міста: ${cityValue} на дату: ${dateValue}...`);
         const weatherData = await fetchWeatherData(cityValue);
 
         renderWeatherCard(weatherData, dateValue);
