@@ -13,7 +13,6 @@ export function validateDestination(destination) {
         throw new Error("Помилка при пошуку міста: введіть назву лише англійськими літерами (наприклад: Kyiv, London).");
     }
 
-    return true;
 }
 
 export function validateTravelDate(travelDateString) {
@@ -31,5 +30,4 @@ export function validateTravelDate(travelDateString) {
         throw new Error("Помилка при плануванні дати: дата подорожі не може бути в минулому.");
     }
 
-    return true;
 }
