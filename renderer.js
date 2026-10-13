@@ -1,6 +1,7 @@
 const weatherResultContainer = document.querySelector('#weather-result');
 const errorContainer = document.querySelector('#error-message');
 const wishlistForm = document.querySelector('#wishlist-form');
+const savedTripsList = document.querySelector('#saved-trips-list');
 
 export function renderWeatherCard(weatherData) {
     weatherResultContainer.innerHTML = '';
@@ -46,4 +47,35 @@ export function showErrorMessage(message) {
 export function clearErrorMessage() {
     errorContainer.textContent = '';
     errorContainer.classList.add('hidden');
+}
+
+export function renderSavedTrips(tripsList) {
+    const savedTripsList = document.querySelector('#saved-trips-list');
+    savedTripsList.innerHTML = '';
+
+    if (tripsList.length === 0) {
+        savedTripsList.innerHTML = '<li class="no-trips">Список порожній. Додайте першу подорож!</li>';
+        return;
+    }
+
+    tripsList.forEach(trip => {
+        const li = document.createElement('li');
+        li.className = 'saved-trip-item animate-fade-in';
+
+        let noteHTML = '';
+        if (trip.note) {
+            noteHTML = '<p class="trip-note">📝 ' + trip.note + '</p>';
+        }
+
+        li.innerHTML = `
+            <div class="trip-info">
+                <span class="trip-city"><strong>${trip.destination}</strong></span>
+                <span class="trip-date">📅 ${trip.date} (${trip.temperature}°C)</span>
+                ` + noteHTML + `
+            </div>
+            <button class="btn-delete" data-id="${trip.id}">Видалити</button>
+        `;
+
+        savedTripsList.appendChild(li);
+    });
 }
