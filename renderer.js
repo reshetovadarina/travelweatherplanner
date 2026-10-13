@@ -1,5 +1,6 @@
 const weatherResultContainer = document.querySelector('#weather-result');
 const errorContainer = document.querySelector('#error-message');
+const wishlistForm = document.querySelector('#wishlist-form');
 
 export function renderWeatherCard(weatherData) {
     weatherResultContainer.innerHTML = '';
@@ -33,12 +34,14 @@ export function renderWeatherCard(weatherData) {
             </div>
         </div>
     `;
+    wishlistForm.classList.remove('hidden');
 }
 
 export function showErrorMessage(message) {
     errorContainer.textContent = message;
     errorContainer.classList.remove('hidden');
 }
+  wishlistForm.classList.add('hidden');
 
 export function clearErrorMessage() {
     errorContainer.textContent = '';
