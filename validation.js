@@ -1,17 +1,15 @@
 export function validateDestination(destination) {
-    const trimmedInput = destination.trim();
 
-    if (!trimmedInput) {
+    if (!destination) {
         throw new Error("Помилка при пошуку міста: назва пункту призначення не може бути порожньою.");
     }
 
-    if (trimmedInput.length < 2) {
+    if (destination.length < 2) {
         throw new Error("Помилка при пошуку міста: назва має містити щонайменше 2 символи.");
     }
 
     const englishLettersOnly = /^[a-zA-Z\s-]+$/;
-
-    if (!englishLettersOnly.test(trimmedInput)) {
+    if (!englishLettersOnly.test(destination)) {
         throw new Error("Помилка при пошуку міста: введіть назву лише англійськими літерами (наприклад: Kyiv, London).");
     }
 
