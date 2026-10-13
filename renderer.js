@@ -64,16 +64,18 @@ export function renderSavedTrips(tripsList) {
 
         let noteHTML = '';
         if (trip.note) {
-            noteHTML = '<p class="trip-note">📝 ' + trip.note + '</p>';
+            noteHTML = '<p class="trip-note"> ' + trip.note + '</p>';
         }
 
         li.innerHTML = `
-            <div class="trip-info">
-                <span class="trip-city"><strong>${trip.destination}</strong></span>
-                <span class="trip-date">📅 ${trip.date} (${trip.temperature}°C)</span>
-                ` + noteHTML + `
+            <div class="trip-header-row">
+                <div class="trip-info">
+                    <span class="trip-city"><strong>${trip.destination}</strong></span>
+                    <span class="trip-date"> ${trip.date} (${trip.temperature}°C)</span>
+                </div>
+                <button class="btn-delete" data-id="${trip.id}">Видалити</button>
             </div>
-            <button class="btn-delete" data-id="${trip.id}">Видалити</button>
+            ` + noteHTML + `
         `;
 
         savedTripsList.appendChild(li);

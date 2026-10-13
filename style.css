@@ -156,6 +156,29 @@ header p {
   transform: translateY(1px);
 }
 
+.btn-delete {
+  background-color: #fef2f2;
+  color: #ef4444;
+  border: 1px solid #fca5a5;
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all var(--transition-fast);
+}
+
+.btn-delete:hover {
+  background-color: #ef4444;
+  color: #ffffff;
+  border-color: #ef4444;
+}
+
+.btn-delete:active {
+  transform: scale(0.95);
+}
+
 #wishlist-form {
   margin-top: 24px;
   border-color: #fed7aa;
@@ -259,6 +282,50 @@ header p {
   animation: slideDown 0.3s ease;
 }
 
+.saved-trip-item {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background-color: #ffffff;
+  padding: 18px;
+  border-radius: var(--border-radius);
+  margin-bottom: 14px;
+  border: 1px solid #e2e8f0;
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.01),
+    0 2px 4px -1px rgba(0, 0, 0, 0.01);
+  transition: all var(--transition-fast);
+}
+
+.saved-trip-item:hover {
+  transform: translateY(-2px);
+  border-color: #cbd5e1;
+  box-shadow: var(--shadow-soft);
+}
+
+.trip-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.trip-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.trip-city {
+  color: var(--text-main);
+  font-size: 1.05rem;
+}
+
+.trip-date {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
 .saved-trips-section h2 {
   font-size: 1.3rem;
   font-weight: 700;
@@ -274,6 +341,18 @@ header p {
   font-size: 0.95rem;
   text-align: center;
   padding: 24px 0;
+}
+.trip-note {
+  font-size: 0.85rem;
+  color: #475569;
+  margin-top: 8px;
+  padding: 6px 12px;
+  background-color: #f8fafc;
+  border-radius: 8px;
+  border: 1px dashed #cbd5e1;
+  font-style: italic;
+  word-break: break-word;
+  display: block;
 }
 
 /* Утиліти анімацій та приховування */
