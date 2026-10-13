@@ -19,23 +19,26 @@ export async function fetchWeatherData(destination) {
     try {
         const response = await fetch(url);
 
-        const contentType = response.headers.get("content-type");
-        if (!contentType || !contentType.includes("application/json")) {
-            throw new Error("Помилка при завантаженні погоди: Сервер повернув некоректну відповідь. Ваш API-ключ ще активується (це займає 1-2 години).");
-        }
-
         if (!response.ok) {
+
+            if (response.status === 401) {
+                throw new Error("Помилка при завантаженні погоди: Ваш API-ключ ще активується на серверах OpenWeatherMap або вказаний некоректно. Будь ласка, зачекайте.");
+            }
+
             if (response.status === 404) {
                 throw new Error("Помилка при завантаженні погоди: Місто не знайдено");
             }
-            if (response.status === 401) {
-                throw new Error("Помилка при завантаженні погоди: API-ключ не активовано або вказано невірно.");
-            }
+
             throw new Error(`Помилка при завантаженні погоди: Статус сервера ${response.status}`);
         }
 
-        const data = await response.json();
 
+        const contentType = response.headers.get("content-type");
+        if (!contentType || !contentType.includes("application/json")) {
+            throw new Error("Помилка при завантаженні погоди: Сервер повернув некоректний формат відповіді (не JSON).");
+        }
+
+        const data = await response.json();
         return mapWeatherData(data);
 
     } catch (error) {
