@@ -41,7 +41,7 @@ export function showErrorMessage(message) {
     errorContainer.textContent = message;
     errorContainer.classList.remove('hidden');
 }
-  wishlistForm.classList.add('hidden');
+   wishlistForm.classList.add('hidden');
 
 export function clearErrorMessage() {
     errorContainer.textContent = '';
