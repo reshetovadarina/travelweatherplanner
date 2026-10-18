@@ -2,6 +2,21 @@ const errorContainer = document.querySelector('#error-message');
 const wishlistForm = document.querySelector('#wishlist-form');
 const weatherResultContainer = document.querySelector('#weather-result');
 const savedTripsList = document.querySelector('#saved-trips-list');
+const submitButton = document.querySelector('.btn-submit');
+const destinationInput = document.querySelector('#destination-input');
+
+export function showLoadingIndicator() {
+    submitButton.disabled = true;
+    destinationInput.disabled = true;
+    submitButton.innerHTML = `<span class="spinner"></span> Завантаження...`;
+}
+
+
+export function hideLoadingIndicator() {
+    submitButton.disabled = false;
+    destinationInput.disabled = false;
+    submitButton.textContent = 'Дізнатись погоду';
+}
 
 
 export function showWishlistForm() {

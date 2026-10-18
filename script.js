@@ -1,6 +1,6 @@
 import { validateDestination, validateTravelDate } from './validation.js';
 import { fetchWeatherData } from './api.js';
-import { renderWeatherCard, showErrorMessage, clearErrorMessage, renderSavedTrips, hideWishlistForm } from './renderer.js';
+import { renderWeatherCard, showErrorMessage, clearErrorMessage, renderSavedTrips, hideWishlistForm, showLoadingIndicator, hideLoadingIndicator } from './renderer.js';
 import { saveTripToStorage, getSavedTrips, deleteTripFromStorage } from './storage.js';
 
 const searchForm = document.querySelector('#search-form');
@@ -18,16 +18,24 @@ renderSavedTrips(initialTrips);
 searchForm.addEventListener('submit', async (event) => {
     event.preventDefault();
     clearErrorMessage();
+
     const cityValue = destinationInput.value.trim();
 
     try {
         validateDestination(cityValue);
+
+        showLoadingIndicator();
+
         const weatherData = await fetchWeatherData(cityValue);
+
         activeWeatherData = weatherData;
         renderWeatherCard(weatherData);
+
     } catch (error) {
         showErrorMessage(error.message);
         activeWeatherData = null;
+    } finally {
+        hideLoadingIndicator();
     }
 });
 
