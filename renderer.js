@@ -1,8 +1,9 @@
 const errorContainer = document.querySelector('#error-message');
 const wishlistForm = document.querySelector('#wishlist-form');
+const weatherResultContainer = document.querySelector('#weather-result');
+const savedTripsList = document.querySelector('#saved-trips-list');
 
 export function renderWeatherCard(weatherData) {
-    const weatherResultContainer = document.querySelector('#weather-result');
     weatherResultContainer.innerHTML = '';
 
     weatherResultContainer.innerHTML = `
@@ -16,19 +17,19 @@ export function renderWeatherCard(weatherData) {
 
             <div class="weather-details-grid">
                 <div class="detail-item">
-                    <span>Відчувається як:</span>
+                    <span> Відчувається як:</span>
                     <strong>${weatherData.feelsLike}°C</strong>
                 </div>
                 <div class="detail-item">
-                    <span>Вологість:</span>
+                    <span> Вологість:</span>
                     <strong>${weatherData.humidity}%</strong>
                 </div>
                 <div class="detail-item">
-                    <span>Тиск:</span>
+                    <span> Тиск:</span>
                     <strong>${weatherData.pressure} гПа</strong>
                 </div>
                 <div class="detail-item">
-                    <span>Вітер:</span>
+                    <span> Вітер:</span>
                     <strong>${weatherData.windSpeed} м/с</strong>
                 </div>
             </div>
@@ -39,7 +40,7 @@ export function renderWeatherCard(weatherData) {
 }
 
 export function renderSavedTrips(tripsList) {
-    const savedTripsList = document.querySelector('#saved-trips-list');
+
     savedTripsList.innerHTML = '';
 
     if (tripsList.length === 0) {
