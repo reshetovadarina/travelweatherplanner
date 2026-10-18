@@ -28,7 +28,7 @@
 
 body {
   font-family:
-    "Segoe UI",
+    "Inter",
     system-ui,
     -apple-system,
     sans-serif;
@@ -416,10 +416,6 @@ header p {
     padding: 20px 12px;
   }
 
-  header {
-    margin-bottom: 28px;
-  }
-
   header h1 {
     font-size: 1.9rem;
   }
@@ -433,7 +429,6 @@ header p {
   .saved-trips-section {
     padding: 24px 20px;
   }
-
   .weather-temp {
     font-size: 2.8rem;
   }
