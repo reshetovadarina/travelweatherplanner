@@ -3,6 +3,7 @@ const wishlistForm = document.querySelector('#wishlist-form');
 const weatherResultContainer = document.querySelector('#weather-result');
 const savedTripsList = document.querySelector('#saved-trips-list');
 
+
 export function showWishlistForm() {
     wishlistForm.classList.remove('hidden');
 }
@@ -13,24 +14,38 @@ export function hideWishlistForm() {
 }
 
 export function renderWeatherCard(weatherData) {
-    const weatherResultContainer = document.querySelector('#weather-result');
     weatherResultContainer.innerHTML = '';
 
     weatherResultContainer.innerHTML = `
         <div class="weather-card animate-fade-in">
             <h3 class="card-title">Поточна погода в: <strong>${weatherData.destination}, ${weatherData.country}</strong></h3>
+
             <div class="weather-main-info">
                 <span class="weather-temp">${weatherData.temperature}°C</span>
                 <span class="weather-desc">${weatherData.condition}</span>
             </div>
+
             <div class="weather-details-grid">
-                <div class="detail-item"><span> Відчувається як:</span><strong>${weatherData.feelsLike}°C</strong></div>
-                <div class="detail-item"><span> Вологість:</span><strong>${weatherData.humidity}%</strong></div>
-                <div class="detail-item"><span> Тиск:</span><strong>${weatherData.pressure} гПа</strong></div>
-                <div class="detail-item"><span> Вітер:</span><strong>${weatherData.windSpeed} м/с</strong></div>
+                <div class="detail-item">
+                    <span> Відчувається як:</span>
+                    <strong>${weatherData.feelsLike}°C</strong>
+                </div>
+                <div class="detail-item">
+                    <span> Вологість:</span>
+                    <strong>${weatherData.humidity}%</strong>
+                </div>
+                <div class="detail-item">
+                    <span> Тиск:</span>
+                    <strong>${weatherData.pressure} гПа</strong>
+                </div>
+                <div class="detail-item">
+                    <span> Вітер:</span>
+                    <strong>${weatherData.windSpeed} м/с</strong>
+                </div>
             </div>
         </div>
     `;
+
     showWishlistForm();
 }
 
@@ -38,7 +53,7 @@ export function renderSavedTrips(tripsList) {
     savedTripsList.innerHTML = '';
 
     if (tripsList.length === 0) {
-        savedTripsList.innerHTML = '<div class="no-trips">Список порожній. Додайте першу подорож!</div>';
+        savedTripsList.innerHTML = '<div class="no-trips">Список порожній. Будь ласка, додайте перше місто у свій wishlist!</div>';
         return;
     }
 
@@ -46,7 +61,7 @@ export function renderSavedTrips(tripsList) {
         const card = document.createElement('div');
         card.className = 'saved-trip-item animate-fade-in';
 
-        const noteHTML = trip.note ? `<p class="trip-note">📝 ${trip.note}</p>` : '';
+        const noteHTML = trip.note ? `<p class="trip-note"> ${trip.note}</p>` : '';
 
         card.innerHTML = `
             <div class="trip-header-row">
@@ -72,7 +87,6 @@ export function renderSavedTrips(tripsList) {
 export function showErrorMessage(message) {
     errorContainer.textContent = message;
     errorContainer.classList.remove('hidden');
-
     hideWishlistForm();
 }
 
