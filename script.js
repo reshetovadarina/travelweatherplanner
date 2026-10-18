@@ -18,17 +18,13 @@ renderSavedTrips(initialTrips);
 searchForm.addEventListener('submit', async (event) => {
     event.preventDefault();
     clearErrorMessage();
-
     const cityValue = destinationInput.value.trim();
 
     try {
         validateDestination(cityValue);
         const weatherData = await fetchWeatherData(cityValue);
-
         activeWeatherData = weatherData;
         renderWeatherCard(weatherData);
-        searchForm.reset();
-
     } catch (error) {
         showErrorMessage(error.message);
         activeWeatherData = null;
@@ -39,15 +35,29 @@ wishlistForm.addEventListener('submit', (event) => {
     event.preventDefault();
     clearErrorMessage();
 
-    const dateValue = wishlistDateInput.value;
+    const travelDateValue = wishlistDateInput.value;
     const noteValue = wishlistNoteInput.value.trim();
 
+    const today = new Date();
+    const addedDate = today.toLocaleDateString('uk-UA', {
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric'
+    });
+
     try {
-        validateTravelDate(dateValue);
+        validateTravelDate(travelDateValue);
+
+        const formattedTravelDate = new Date(travelDateValue).toLocaleDateString('uk-UA', {
+            day: '2-digit',
+            month: '2-digit',
+            year: 'numeric'
+        });
 
         const wishlistPlan = {
             id: Date.now().toString(),
-            date: dateValue,
+            travelDate: formattedTravelDate,
+            addedAt: addedDate,
             note: noteValue,
             ...activeWeatherData
         };
