@@ -3,6 +3,15 @@ const wishlistForm = document.querySelector('#wishlist-form');
 const weatherResultContainer = document.querySelector('#weather-result');
 const savedTripsList = document.querySelector('#saved-trips-list');
 
+export function showWishlistForm() {
+    wishlistForm.classList.remove('hidden');
+}
+
+export function hideWishlistForm() {
+    wishlistForm.reset();
+    wishlistForm.classList.add('hidden');
+}
+
 export function renderWeatherCard(weatherData) {
     weatherResultContainer.innerHTML = '';
 
@@ -36,7 +45,7 @@ export function renderWeatherCard(weatherData) {
         </div>
     `;
 
-    wishlistForm.classList.remove('hidden');
+    showWishlistForm();
 }
 
 export function renderSavedTrips(tripsList) {
@@ -50,6 +59,7 @@ export function renderSavedTrips(tripsList) {
     tripsList.forEach(trip => {
         const card = document.createElement('div');
         card.className = 'saved-trip-item animate-fade-in';
+
         const noteHTML = trip.note ? `<p class="trip-note"> ${trip.note}</p>` : '';
 
         card.innerHTML = `
@@ -70,7 +80,8 @@ export function renderSavedTrips(tripsList) {
 export function showErrorMessage(message) {
     errorContainer.textContent = message;
     errorContainer.classList.remove('hidden');
-    wishlistForm.classList.add('hidden');
+
+    hideWishlistForm();
 }
 
 export function clearErrorMessage() {

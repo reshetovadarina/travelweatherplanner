@@ -1,8 +1,7 @@
 import { validateDestination, validateTravelDate } from './validation.js';
 import { fetchWeatherData } from './api.js';
-import { renderWeatherCard, showErrorMessage, clearErrorMessage, renderSavedTrips } from './renderer.js';
+import { renderWeatherCard, showErrorMessage, clearErrorMessage, renderSavedTrips, hideWishlistForm } from './renderer.js';
 import { saveTripToStorage, getSavedTrips, deleteTripFromStorage } from './storage.js';
-
 const searchForm = document.querySelector('#search-form');
 const destinationInput = document.querySelector('#destination-input');
 const wishlistForm = document.querySelector('#wishlist-form');
@@ -55,13 +54,10 @@ wishlistForm.addEventListener('submit', (event) => {
         };
 
         const updatedTrips = saveTripToStorage(wishlistPlan);
-
         renderSavedTrips(updatedTrips);
 
-        wishlistForm.reset();
+        hideWishlistForm();
         searchForm.reset();
-        wishlistForm.classList.add('hidden');
-
         activeWeatherData = null;
 
     } catch (error) {
