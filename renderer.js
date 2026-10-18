@@ -40,7 +40,6 @@ export function renderWeatherCard(weatherData) {
 }
 
 export function renderSavedTrips(tripsList) {
-
     savedTripsList.innerHTML = '';
 
     if (tripsList.length === 0) {
@@ -51,11 +50,7 @@ export function renderSavedTrips(tripsList) {
     tripsList.forEach(trip => {
         const card = document.createElement('div');
         card.className = 'saved-trip-item animate-fade-in';
-
-        let noteHTML = '';
-        if (trip.note) {
-            noteHTML = '<p class="trip-note"> ' + trip.note + '</p>';
-        }
+        const noteHTML = trip.note ? `<p class="trip-note"> ${trip.note}</p>` : '';
 
         card.innerHTML = `
             <div class="trip-header-row">
@@ -65,7 +60,7 @@ export function renderSavedTrips(tripsList) {
                 </div>
                 <button class="btn-delete" data-id="${trip.id}">Видалити</button>
             </div>
-            ` + noteHTML + `
+            ${noteHTML}
         `;
 
         savedTripsList.appendChild(card);
