@@ -4,7 +4,7 @@ const wishlistDateInput = document.querySelector('#wishlist-date-input');
 const wishlistErrorContainer = document.querySelector('#wishlist-error-message');
 const weatherResultContainer = document.querySelector('#weather-result');
 const savedTripsList = document.querySelector('#saved-trips-list');
-const submitButton = document.querySelector('.btn-submit');
+const submitButton = document.querySelector('#search-form .btn-submit');
 const destinationInput = document.querySelector('#destination-input');
 
 export function showWishlistForm() {
