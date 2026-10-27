@@ -282,18 +282,21 @@ header p {
   animation: slideDown 0.3s ease;
 }
 
+.saved-trips-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
 .saved-trip-item {
   display: flex;
   flex-direction: column;
   gap: 12px;
-  background-color: #ffffff;
-  padding: 18px;
+  background-color: var(--bg-card);
+  padding: 20px;
   border-radius: var(--border-radius);
-  margin-bottom: 14px;
   border: 1px solid #e2e8f0;
-  box-shadow:
-    0 4px 6px -1px rgba(0, 0, 0, 0.01),
-    0 2px 4px -1px rgba(0, 0, 0, 0.01);
+  box-shadow: 0 4px 12px -1px rgba(0, 0, 0, 0.03);
   transition: all var(--transition-fast);
 }
 
