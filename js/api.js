@@ -1,5 +1,18 @@
 const API_KEY = '995dd282529ced4808cb6801f4e1123c';
 const BASE_URL = 'https://api.openweathermap.org/data/2.5/weather';
+const ERROR_PREFIX = 'Помилка при завантаженні погоди';
+
+function getErrorMessage(status) {
+    switch (status) {
+        case 401:
+            return `${ERROR_PREFIX}: Ваш API-ключ недійсний або ще активується на серверах.`;
+        case 404:
+            return `${ERROR_PREFIX}: Місто не знайдено`;
+        default:
+            return `${ERROR_PREFIX}: Статус сервера ${status}`;
+    }
+}
+
 
 function mapWeatherData(data) {
     return {
@@ -16,21 +29,16 @@ function mapWeatherData(data) {
 
 export async function fetchWeatherData(destination) {
     const url = `${BASE_URL}?q=${encodeURIComponent(destination)}&appid=${API_KEY}&units=metric&lang=uk`;
+
     const response = await fetch(url);
 
     if (!response.ok) {
-        if (response.status === 401) {
-            throw new Error("Помилка при завантаженні погоди: Ваш API-ключ ще активується на серверах або вказаний некоректно.");
-        }
-        if (response.status === 404) {
-            throw new Error("Помилка при завантаженні погоди: Місто не знайдено");
-        }
-        throw new Error(`Помилка при завантаженні погоди: Статус сервера ${response.status}`);
+        throw new Error(getErrorMessage(response.status));
     }
 
     const contentType = response.headers.get("content-type");
     if (!contentType || !contentType.includes("application/json")) {
-        throw new Error("Помилка при завантаженні погоди: Сервер повернув некоректний формат відповіді.");
+        throw new Error(`${ERROR_PREFIX}: Сервер повернув некоректний формат відповіді.`);
     }
 
     const data = await response.json();
