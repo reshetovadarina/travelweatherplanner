@@ -1,5 +1,6 @@
 const API_KEY = '995dd282529ced4808cb6801f4e1123c';
 const BASE_URL = 'https://api.openweathermap.org/data/2.5/weather';
+
 function mapWeatherData(data) {
     return {
         destination: data.name,
@@ -15,29 +16,23 @@ function mapWeatherData(data) {
 
 export async function fetchWeatherData(destination) {
     const url = `${BASE_URL}?q=${encodeURIComponent(destination)}&appid=${API_KEY}&units=metric&lang=uk`;
+    const response = await fetch(url);
 
-    try {
-        const response = await fetch(url);
-
-        if (!response.ok) {
-            if (response.status === 401) {
-                throw new Error("Помилка при завантаженні погоди: Ваш API-ключ ще активується на серверах OpenWeatherMap. Будь ласка, зачекайте.");
-            }
-            if (response.status === 404) {
-                throw new Error("Помилка при завантаженні погоди: Місто не знайдено");
-            }
-            throw new Error(`Помилка при завантаженні погоди: Статус сервера ${response.status}`);
+    if (!response.ok) {
+        if (response.status === 401) {
+            throw new Error("Помилка при завантаженні погоди: Ваш API-ключ ще активується на серверах або вказаний некоректно.");
         }
-
-        const contentType = response.headers.get("content-type");
-        if (!contentType || !contentType.includes("application/json")) {
-            throw new Error("Помилка при завантаженні погоди: Сервер повернув некоректний формат відповіді.");
+        if (response.status === 404) {
+            throw new Error("Помилка при завантаженні погоди: Місто не знайдено");
         }
-
-        const data = await response.json();
-        return mapWeatherData(data);
-
-    } catch (error) {
-        throw error;
+        throw new Error(`Помилка при завантаженні погоди: Статус сервера ${response.status}`);
     }
+
+    const contentType = response.headers.get("content-type");
+    if (!contentType || !contentType.includes("application/json")) {
+        throw new Error("Помилка при завантаженні погоди: Сервер повернув некоректний формат відповіді.");
+    }
+
+    const data = await response.json();
+    return mapWeatherData(data);
 }
