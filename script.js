@@ -1,7 +1,6 @@
 import { validateDestination, validateTravelDate } from './validation.js';
 import { fetchWeatherData } from './api.js';
-import { renderWeatherCard, showErrorMessage, clearErrorMessage, renderSavedTrips, hideWishlistForm, showLoadingIndicator, hideLoadingIndicator, showWishlistErrorMessage,
-    clearWishlistErrorMessage } from './renderer.js';
+import { renderWeatherCard, showErrorMessage, clearErrorMessage, renderSavedTrips, hideWishlistForm, showLoadingIndicator, hideLoadingIndicator, showWishlistErrorMessage, clearWishlistErrorMessage } from './renderer.js';
 import { saveTripToStorage, getSavedTrips, deleteTripFromStorage } from './storage.js';
 
 const searchForm = document.querySelector('#search-form');
@@ -12,9 +11,16 @@ const wishlistNoteInput = document.querySelector('#wishlist-note-input');
 const savedTripsList = document.querySelector('#saved-trips-list');
 
 let activeWeatherData = null;
-
 const initialTrips = getSavedTrips();
 renderSavedTrips(initialTrips);
+
+function formatDate(date) {
+    return date.toLocaleDateString('uk-UA', {
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric'
+    });
+}
 
 searchForm.addEventListener('submit', async (event) => {
     event.preventDefault();
@@ -26,7 +32,6 @@ searchForm.addEventListener('submit', async (event) => {
         validateDestination(cityValue);
 
         showLoadingIndicator();
-
         const weatherData = await fetchWeatherData(cityValue);
 
         activeWeatherData = weatherData;
@@ -49,11 +54,13 @@ wishlistForm.addEventListener('submit', (event) => {
 
     try {
         validateTravelDate(dateValue);
+        const formattedTravelDate = formatDate(new Date(dateValue));
+        const addedDate = formatDate(new Date());
 
         const wishlistPlan = {
             id: Date.now().toString(),
-            travelDate: new Date(dateValue).toLocaleDateString('uk-UA', { day: '2-digit', month: '2-digit', year: 'numeric' }),
-            addedAt: new Date().toLocaleDateString('uk-UA', { day: '2-digit', month: '2-digit', year: 'numeric' }),
+            travelDate: formattedTravelDate,
+            addedAt: addedDate,
             note: noteValue,
             ...activeWeatherData
         };
