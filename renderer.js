@@ -96,7 +96,7 @@ export function renderSavedTrips(tripsList) {
                     <span class="trip-city"><strong>${trip.destination}</strong>, ${trip.country}</span>
                     <span class="trip-date"> Дата поїздки: <strong>${trip.travelDate}</strong></span>
                     <span style="font-size: 0.9rem; color: var(--text-muted); margin-top: 2px;">
-                         Поточна погода: ${trip.condition} (${trip.temperature}°C)
+                         Погода на момент додавання: ${trip.condition} (${trip.temperature}°C)
                     </span>
                     <span style="font-size: 0.75rem; color: #94a3b8; margin-top: 4px; display: block;">
                         Створено: ${trip.addedAt}
