@@ -39,8 +39,11 @@
 
           <form id="wishlist-form" class="search-form mt-4 hidden">
             <h3 class="mb-3">Спланувати подорож сюди?</h3>
+
             <div class="form-group">
-              <label for="wishlist-date-input">Коли ви плануєте поїздку?</label>
+              <label for="wishlist-date-input"
+                >Дата вашої майбутньої подорожі</label
+              >
               <input type="date" id="wishlist-date-input" />
             </div>
 
@@ -49,13 +52,15 @@
               <textarea
                 id="wishlist-note-input"
                 rows="3"
-                placeholder="Наприклад: Відвідати музеї, скуштувати місцеву кухню..."
+                placeholder="Наприклад: Відвідати музеї..."
               ></textarea>
             </div>
 
             <button type="submit" class="btn-submit bg-orange">
               Додати у wishlist
             </button>
+
+            <div id="wishlist-error-message" class="error-message hidden"></div>
           </form>
         </section>
 

@@ -1,6 +1,7 @@
 import { validateDestination, validateTravelDate } from './validation.js';
 import { fetchWeatherData } from './api.js';
-import { renderWeatherCard, showErrorMessage, clearErrorMessage, renderSavedTrips, hideWishlistForm, showLoadingIndicator, hideLoadingIndicator } from './renderer.js';
+import { renderWeatherCard, showErrorMessage, clearErrorMessage, renderSavedTrips, hideWishlistForm, showLoadingIndicator, hideLoadingIndicator, showWishlistErrorMessage,
+    clearWishlistErrorMessage } from './renderer.js';
 import { saveTripToStorage, getSavedTrips, deleteTripFromStorage } from './storage.js';
 
 const searchForm = document.querySelector('#search-form');
@@ -41,31 +42,18 @@ searchForm.addEventListener('submit', async (event) => {
 
 wishlistForm.addEventListener('submit', (event) => {
     event.preventDefault();
-    clearErrorMessage();
+    clearWishlistErrorMessage();
 
-    const travelDateValue = wishlistDateInput.value;
+    const dateValue = wishlistDateInput.value;
     const noteValue = wishlistNoteInput.value.trim();
 
-    const today = new Date();
-    const addedDate = today.toLocaleDateString('uk-UA', {
-        day: '2-digit',
-        month: '2-digit',
-        year: 'numeric'
-    });
-
     try {
-        validateTravelDate(travelDateValue);
-
-        const formattedTravelDate = new Date(travelDateValue).toLocaleDateString('uk-UA', {
-            day: '2-digit',
-            month: '2-digit',
-            year: 'numeric'
-        });
+        validateTravelDate(dateValue);
 
         const wishlistPlan = {
             id: Date.now().toString(),
-            travelDate: formattedTravelDate,
-            addedAt: addedDate,
+            travelDate: new Date(dateValue).toLocaleDateString('uk-UA', { day: '2-digit', month: '2-digit', year: 'numeric' }),
+            addedAt: new Date().toLocaleDateString('uk-UA', { day: '2-digit', month: '2-digit', year: 'numeric' }),
             note: noteValue,
             ...activeWeatherData
         };
@@ -78,7 +66,7 @@ wishlistForm.addEventListener('submit', (event) => {
         activeWeatherData = null;
 
     } catch (error) {
-        showErrorMessage(error.message);
+        showWishlistErrorMessage(error.message);
     }
 });
 

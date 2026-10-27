@@ -1,9 +1,35 @@
 const errorContainer = document.querySelector('#error-message');
 const wishlistForm = document.querySelector('#wishlist-form');
+const wishlistDateInput = document.querySelector('#wishlist-date-input');
+const wishlistErrorContainer = document.querySelector('#wishlist-error-message');
 const weatherResultContainer = document.querySelector('#weather-result');
 const savedTripsList = document.querySelector('#saved-trips-list');
 const submitButton = document.querySelector('.btn-submit');
 const destinationInput = document.querySelector('#destination-input');
+
+export function showWishlistForm() {
+    const todayStr = new Date().toISOString().split('T')[0];
+    wishlistDateInput.min = todayStr;
+
+    wishlistForm.classList.remove('hidden');
+    clearWishlistErrorMessage();
+}
+
+export function hideWishlistForm() {
+    wishlistForm.reset();
+    wishlistForm.classList.add('hidden');
+    clearWishlistErrorMessage();
+}
+
+export function showWishlistErrorMessage(message) {
+    wishlistErrorContainer.textContent = message;
+    wishlistErrorContainer.classList.remove('hidden');
+}
+
+export function clearWishlistErrorMessage() {
+    wishlistErrorContainer.textContent = '';
+    wishlistErrorContainer.classList.add('hidden');
+}
 
 export function showLoadingIndicator() {
     submitButton.disabled = true;
@@ -11,26 +37,13 @@ export function showLoadingIndicator() {
     submitButton.innerHTML = `<span class="spinner"></span> Завантаження...`;
 }
 
-
 export function hideLoadingIndicator() {
     submitButton.disabled = false;
     destinationInput.disabled = false;
     submitButton.textContent = 'Дізнатись погоду';
 }
 
-
-export function showWishlistForm() {
-    wishlistForm.classList.remove('hidden');
-}
-
-export function hideWishlistForm() {
-    wishlistForm.reset();
-    wishlistForm.classList.add('hidden');
-}
-
 export function renderWeatherCard(weatherData) {
-    weatherResultContainer.innerHTML = '';
-
     weatherResultContainer.innerHTML = `
         <div class="weather-card animate-fade-in">
             <h3 class="card-title">Поточна погода в: <strong>${weatherData.destination}, ${weatherData.country}</strong></h3>
@@ -42,11 +55,11 @@ export function renderWeatherCard(weatherData) {
 
             <div class="weather-details-grid">
                 <div class="detail-item">
-                    <span> Відчувається як:</span>
+                    <span>Відчувається як:</span>
                     <strong>${weatherData.feelsLike}°C</strong>
                 </div>
                 <div class="detail-item">
-                    <span> Вологість:</span>
+                    <span>Вологість:</span>
                     <strong>${weatherData.humidity}%</strong>
                 </div>
                 <div class="detail-item">
@@ -60,7 +73,6 @@ export function renderWeatherCard(weatherData) {
             </div>
         </div>
     `;
-
     showWishlistForm();
 }
 
@@ -68,7 +80,7 @@ export function renderSavedTrips(tripsList) {
     savedTripsList.innerHTML = '';
 
     if (tripsList.length === 0) {
-        savedTripsList.innerHTML = '<div class="no-trips">Список порожній. Будь ласка, додайте перше місто у свій wishlist!</div>';
+        savedTripsList.innerHTML = '<div class="no-trips">Список порожній. Додайте першу подорож!</div>';
         return;
     }
 
@@ -83,10 +95,10 @@ export function renderSavedTrips(tripsList) {
                 <div class="trip-info">
                     <span class="trip-city"><strong>${trip.destination}</strong>, ${trip.country}</span>
                     <span class="trip-date"> Дата поїздки: <strong>${trip.travelDate}</strong></span>
-                    <span class="trip-weather-info" style="font-size: 0.9rem; color: var(--text-muted); margin-top: 2px;">
+                    <span style="font-size: 0.9rem; color: var(--text-muted); margin-top: 2px;">
                          Поточна погода: ${trip.condition} (${trip.temperature}°C)
                     </span>
-                    <span class="trip-added-date" style="font-size: 0.75rem; color: #94a3b8; margin-top: 4px; display: block;">
+                    <span style="font-size: 0.75rem; color: #94a3b8; margin-top: 4px; display: block;">
                         Створено: ${trip.addedAt}
                     </span>
                 </div>
@@ -102,6 +114,7 @@ export function renderSavedTrips(tripsList) {
 export function showErrorMessage(message) {
     errorContainer.textContent = message;
     errorContainer.classList.remove('hidden');
+
     hideWishlistForm();
 }
 
