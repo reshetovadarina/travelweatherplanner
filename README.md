@@ -7,6 +7,7 @@
 # Демонстрація роботи (Анімація)
 
 Жива демонстрація роботи Travel Weather Planner
+https://github.com/reshetovadarina/travelweatherplanner/blob/main/travelweatherplanner.gif
 
 ---
 
