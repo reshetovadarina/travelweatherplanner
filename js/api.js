@@ -13,7 +13,6 @@ function getErrorMessage(status) {
     }
 }
 
-
 function mapWeatherData(data) {
     return {
         destination: data.name,
@@ -36,8 +35,8 @@ export async function fetchWeatherData(destination) {
         throw new Error(getErrorMessage(response.status));
     }
 
-    const contentType = response.headers.get("content-type");
-    if (!contentType || !contentType.includes("application/json")) {
+    const contentType = response.headers.get('content-type');
+    if (!contentType || !contentType.includes('application/json')) {
         throw new Error(`${ERROR_PREFIX}: Сервер повернув некоректний формат відповіді.`);
     }
 

@@ -1,78 +1,71 @@
 <!doctype html>
 <html lang="uk">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Travel Weather Planner</title>
-    <link rel="preconnect" href="https://googleapis.com" />
-    <link rel="preconnect" href="https://gstatic.com" crossorigin />
-    <link
-      href="https://googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="css/style.css" />
-  </head>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Travel Weather Planner</title>
+        <link rel="preconnect" href="https://googleapis.com" />
+        <link rel="preconnect" href="https://gstatic.com" crossorigin />
+        <link href="https://googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+        <link rel="stylesheet" href="css/style.css" />
+    </head>
 
-  <body>
-    <div class="app-container">
-      <header>
-        <h1>Travel Weather Planner</h1>
-        <p>Плануйте свої подорожі з урахуванням погоди</p>
-      </header>
+    <body>
+        <div class="app-container">
+            <header>
+                <h1>Travel Weather Planner</h1>
+                <p>Плануйте свої подорожі з урахуванням погоди</p>
+            </header>
 
-      <main class="main-content">
-        <section class="planner-section">
-          <form id="search-form" class="search-form">
-            <div class="form-group">
-              <label for="destination-input">Куди прямуєте?</label>
-              <input
-                type="text"
-                id="destination-input"
-                placeholder="Наприклад: Paris, Kyiv...(англійською мовою)"
-              />
-            </div>
+            <main class="main-content">
+                <section class="planner-section">
+                    <form id="search-form" class="search-form">
+                        <div class="form-group">
+                            <label for="destination-input">Куди прямуєте?</label>
+                            <input
+                                type="text"
+                                id="destination-input"
+                                placeholder="Наприклад: Paris, Kyiv...(англійською мовою)"
+                            />
+                        </div>
 
-            <button type="submit" class="btn-submit">Дізнатись погоду</button>
-            <div id="error-message" class="error-message hidden"></div>
-          </form>
-          <div id="weather-result" class="weather-result"></div>
+                        <button type="submit" class="btn-submit">Дізнатись погоду</button>
+                        <div id="error-message" class="error-message hidden"></div>
+                    </form>
+                    <div id="weather-result" class="weather-result"></div>
 
-          <form id="wishlist-form" class="search-form mt-4 hidden">
-            <h3 class="mb-3">Спланувати подорож сюди?</h3>
+                    <form id="wishlist-form" class="search-form mt-4 hidden">
+                        <h3 class="mb-3">Спланувати подорож сюди?</h3>
 
-            <div class="form-group">
-              <label for="wishlist-date-input"
-                >Дата вашої майбутньої подорожі</label
-              >
-              <input type="date" id="wishlist-date-input" />
-            </div>
+                        <div class="form-group">
+                            <label for="wishlist-date-input">Дата вашої майбутньої подорожі</label>
+                            <input type="date" id="wishlist-date-input" />
+                        </div>
 
-            <div class="form-group">
-              <label for="wishlist-note-input">Персональна нотатка</label>
-              <textarea
-                id="wishlist-note-input"
-                rows="3"
-                placeholder="Наприклад: Відвідати музеї..."
-              ></textarea>
-            </div>
+                        <div class="form-group">
+                            <label for="wishlist-note-input">Персональна нотатка</label>
+                            <textarea
+                                id="wishlist-note-input"
+                                rows="3"
+                                placeholder="Наприклад: Відвідати музеї..."
+                            ></textarea>
+                        </div>
 
-            <button type="submit" class="btn-submit bg-orange">
-              Додати у wishlist
-            </button>
+                        <button type="submit" class="btn-submit bg-orange">Додати у wishlist</button>
 
-            <div id="wishlist-error-message" class="error-message hidden"></div>
-          </form>
-        </section>
+                        <div id="wishlist-error-message" class="error-message hidden"></div>
+                    </form>
+                </section>
 
-        <aside class="saved-trips-section">
-          <h2>Мої плани</h2>
-          <div id="saved-trips-list" class="saved-trips-list">
-            <div class="no-trips">Список порожній. Додайте першу подорож!</div>
-          </div>
-        </aside>
-      </main>
-    </div>
+                <aside class="saved-trips-section">
+                    <h2>Мої плани</h2>
+                    <div id="saved-trips-list" class="saved-trips-list">
+                        <div class="no-trips">Список порожній. Додайте першу подорож!</div>
+                    </div>
+                </aside>
+            </main>
+        </div>
 
-    <script type="module" src="js/script.js"></script>
-  </body>
+        <script type="module" src="js/script.js"></script>
+    </body>
 </html>

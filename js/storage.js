@@ -8,7 +8,7 @@ export function getSavedTrips() {
 export function saveTripToStorage(newTrip) {
     const currentTrips = getSavedTrips();
     const isDuplicate = currentTrips.some(
-        trip => trip.destination.toLowerCase() === newTrip.destination.toLowerCase() && trip.date === newTrip.date
+        (trip) => trip.destination.toLowerCase() === newTrip.destination.toLowerCase() && trip.date === newTrip.date
     );
 
     if (!isDuplicate) {
@@ -21,7 +21,7 @@ export function saveTripToStorage(newTrip) {
 
 export function deleteTripFromStorage(tripId) {
     const currentTrips = getSavedTrips();
-    const updatedTrips = currentTrips.filter(trip => trip.id !== tripId);
+    const updatedTrips = currentTrips.filter((trip) => trip.id !== tripId);
     localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedTrips));
     return updatedTrips;
 }

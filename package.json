@@ -1,0 +1,27 @@
+{
+  "name": "travelweatherplanner",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+  "lint": "npx eslint js/",
+  "format": "npx prettier --write js/**/*.js css/style.css index.html"
+},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/reshetovadarina/travelweatherplanner.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/reshetovadarina/travelweatherplanner/issues"
+  },
+  "homepage": "https://github.com/reshetovadarina/travelweatherplanner#readme",
+  "devDependencies": {
+    "eslint": "^10.13.0",
+    "eslint-config-prettier": "^10.1.8",
+    "prettier": "^3.9.10"
+  }
+}

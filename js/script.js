@@ -1,6 +1,16 @@
 import { validateDestination, validateTravelDate } from './validation.js';
 import { fetchWeatherData } from './api.js';
-import { renderWeatherCard, showErrorMessage, clearErrorMessage, renderSavedTrips, hideWishlistForm, showLoadingIndicator, hideLoadingIndicator, showWishlistErrorMessage, clearWishlistErrorMessage } from './renderer.js';
+import {
+    renderWeatherCard,
+    showErrorMessage,
+    clearErrorMessage,
+    renderSavedTrips,
+    hideWishlistForm,
+    showLoadingIndicator,
+    hideLoadingIndicator,
+    showWishlistErrorMessage,
+    clearWishlistErrorMessage
+} from './renderer.js';
 import { saveTripToStorage, getSavedTrips, deleteTripFromStorage } from './storage.js';
 
 const searchForm = document.querySelector('#search-form');
@@ -36,7 +46,6 @@ searchForm.addEventListener('submit', async (event) => {
 
         activeWeatherData = weatherData;
         renderWeatherCard(weatherData);
-
     } catch (error) {
         showErrorMessage(error.message);
         activeWeatherData = null;
@@ -71,7 +80,6 @@ wishlistForm.addEventListener('submit', (event) => {
         hideWishlistForm();
         searchForm.reset();
         activeWeatherData = null;
-
     } catch (error) {
         showWishlistErrorMessage(error.message);
     }

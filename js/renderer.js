@@ -84,7 +84,7 @@ export function renderSavedTrips(tripsList) {
         return;
     }
 
-    tripsList.forEach(trip => {
+    tripsList.forEach((trip) => {
         const card = document.createElement('div');
         card.className = 'saved-trip-item animate-fade-in';
 
