@@ -25,16 +25,20 @@
 }
 
 body {
-    font-family:
-        'Inter',
-        system-ui,
-        -apple-system,
-        sans-serif;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
     background-color: var(--bg-app);
     color: var(--text-main);
     line-height: 1.6;
     padding: 40px 20px;
     -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
 }
 
 .app-container {
