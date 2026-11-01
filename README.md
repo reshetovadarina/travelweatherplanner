@@ -53,7 +53,7 @@
 ## Live Demo
 
 Жива версія додатку, опублікована в інтернеті:
-**[Travel Weather Planner на GitHub Pages]**
+**[https://reshetovadarina.github.io/travelweatherplanner/]**
 
 ---
 
